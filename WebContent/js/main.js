@@ -23,6 +23,7 @@ function signIn(){
 }
 
 function signUp(){
+	
 	var success = function(){
 		window.location.replace("main.jsp");
 	}

@@ -75,6 +75,17 @@ public class SkillShareService
 	public User getUser(int idUser){
 		return null;
 	}
+	
+	/**
+	 * Retourne l'utilisateur associé au login donné en paramètre. Retourne null si aucun
+	 * utilisateur n'est associé à ce login. 
+	 * @param login
+	 * @return
+	 */
+	public User getUserFromLogin(String login){
+		//TODO
+		return null;
+	}
 
 
 

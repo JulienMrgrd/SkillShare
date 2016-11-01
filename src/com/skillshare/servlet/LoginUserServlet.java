@@ -1,19 +1,22 @@
 package com.skillshare.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.skillshare.metier.*;
-import com.skillshare.services.*;
+import com.skillshare.services.SkillShareService;
 
 
 public class LoginUserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4942288903847017290L;
+	
 	private SkillShareService service = new SkillShareService();
 
 	public LoginUserServlet() {}

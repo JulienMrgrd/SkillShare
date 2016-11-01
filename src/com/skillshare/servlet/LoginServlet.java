@@ -15,7 +15,12 @@ import com.skillshare.services.SkillShareService;
  * Servlet implementation class ContactServlet
  */
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3580539381623668117L;
 	
 	private static final SkillShareService service = new SkillShareService();
 
