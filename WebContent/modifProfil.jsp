@@ -109,26 +109,28 @@
 					</div>
 				</div>
 			</div>
-			<div id="infos" class="col-md-6">
+			<div id="skills" class="col-md-6">
 
 				<ul id="skillList">
 				</ul>
-				<select>
+				<select id='skillItem'>
 					<%
 						for (Skill skill : Skill.values()) {
 					%>
-					<option>
+					<option value='<%=skill.toString()%>'>
 						<%=skill.toString()%>
 					</option>
 					<%
 						}
 					%>
 
-				</select> <select>
-					<option>Base</option>
-					<option>Avancé</option>
-					<option>Expert</option>
-				</select> <a onClick="addSkill()" class="btn btn-success">Ajouter le skill</a>
+				</select> 
+				<select id='skillLevel'>
+					<option value='1'>Base</option>
+					<option value ='2'>Avancé</option>
+					<option value = '3'>Expert</option>
+				</select> 
+				<a onClick="addSkill()" class="btn btn-success">Ajouter le skill</a>
 			</div>
 			<div class="row">
 				<div class="col-md-12">

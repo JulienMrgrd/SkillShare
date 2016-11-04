@@ -4,14 +4,6 @@ function Skill(skill,level){
 	this.level = level;
 }
 
-Skill.prototype.getHTML = function (){
-	var result =  "<li id='";
-	result += this.id + "' class='skill-item'>";
-	result += this.skill + " " + this.level;
-	result += "<a onClick=\"deleteSkill('"+ this.id + "')\">Supprimer</a></li>";
-	return result;
-}
-
 Skill.prototype.getLevelLabel = function(){
 	if(this.level==1)
 		return 'Base';
@@ -19,6 +11,14 @@ Skill.prototype.getLevelLabel = function(){
 		return 'Avancé';
 	if(this.level == 3)
 		return 'Expert';
+}
+
+Skill.prototype.getHTML = function (){
+	var result =  "<li id='";
+	result += this.id + "' class='skill-item'>";
+	result += this.skill + " " + this.getLevelLabel();
+	result += "<a onClick=\"deleteSkill('"+ this.id + "')\"> Supprimer</a></li>";
+	return result;
 }
 
 Skill.prototype.toJson = function(){
@@ -37,7 +37,7 @@ function initUserSkills(){
 	for(i=0; i<userSkills.length; i++){
 		$('#skillList').append(userSkills[i].getHTML());
 	}
-}
+	}
 
 function deleteSkill(id){
 	$('#'+id).remove();
@@ -52,8 +52,8 @@ function deleteSkill(id){
 }
 
 function addSkill(){
-	var skill = 'JAVA';
-	var level = 2;
+	var skill = $("#skillItem option:selected").val();
+	var level = $("#skillLevel option:selected").val();
 	var newSkill = new Skill(skill,level);
 	for(i=0; i<userSkills.length; i++){
 		if(userSkills[i].id == newSkill.id){
