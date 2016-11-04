@@ -32,11 +32,13 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		String login = (String) request.getParameter("email");
 		String password = (String)request.getParameter("password");
 		
-		if(login != null && password != null && service.checkConnection(login, password)){
+		if(login != null && password != null && service.checkConnection(login, password))
+		{
 			HttpSession session = request.getSession();
 			User user = new User(login);
 			session.setAttribute("user", user);

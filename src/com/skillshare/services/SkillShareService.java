@@ -38,7 +38,8 @@ public class SkillShareService
 	 * En tant qu'utilisateur, je peux me connecter avec mon pseudo et mot de passe
 	 *  à l'application dans le but de pouvoir accéder au contenu réservé du site.
 	 */
-	public boolean checkConnection(String pseudo, String pass)	{
+	public boolean checkConnection(String pseudo, String pass)	
+	{
 		return nosql.connectionCheck(pseudo,pass);
 	}
 	
@@ -61,9 +62,9 @@ public class SkillShareService
 	 * mes informations
 	 * @param params
 	 */
-	public void changeProfilInfos(String nom, String prenom, String email, String mdp,
-			List<String> skills){
-
+	public void changeProfilInfos(User user)
+	{
+         nosql.changeInfos(user);
 	}
 
 	/**

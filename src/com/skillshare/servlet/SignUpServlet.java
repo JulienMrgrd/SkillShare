@@ -27,12 +27,14 @@ public class SignUpServlet extends HttpServlet {
 		String name = (String)request.getAttribute("name");
 		String tel = (String)request.getAttribute("tel");
 
-		if(email == null || password == null || firstname == null || name == null || tel == null){
+		if(email == null || password == null || firstname == null || name == null || tel == null)
+		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 
-		if(service.getUserFromLogin(email) != null){
+		if(service.getUserFromLogin(email) != null)
+		{
 			response.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return;
 		}

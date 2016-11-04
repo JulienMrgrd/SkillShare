@@ -21,18 +21,24 @@ public class NoSQLService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public String createAccount(User user){
+	public String createAccount(User user)
+	{
 		Response resp = db.save(user);
 		Map<String, String> createdObject = db.find(HashMap.class, resp.getId());
-		if(createdObject !=null){
-			System.out.println();			
+		if(createdObject !=null)
+		{
+			System.out.println();
 		}
 		return resp.getId();
+		
 	}
 
-	public boolean changeInfos(Map<String, String> params){
-		return true;
-	}
+	public boolean changeInfos(User user)
+	{
+        //Database db = CloudantClientMgr.getDB();    
+        com.cloudant.client.api.model.Response resp = db.update(user);
+        return true;
+    }
 
 	public List<User> searchProfiles(Map<String, String> params){
 		return null;

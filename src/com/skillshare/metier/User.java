@@ -1,6 +1,9 @@
 package com.skillshare.metier;
 
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONArray;
 
 public class User {
 	
@@ -12,7 +15,7 @@ public class User {
 	@SuppressWarnings("unused")
 	private String mdp; // le mdp ne doit pas être stocké dans l'objet. Juste un setter pour mettre en base, aucun getter
 	private String tel;
-	private List<String> competences; //  peut contenir des objets String, à renseigner lors de la modif du profil
+	private Map<Skill,Integer> competences; //  peut contenir des objets String, à renseigner lors de la modif du profil
 	
 	public User() {}
 	
@@ -20,7 +23,7 @@ public class User {
 		this.id = id;
 	}
 	
-	public User(String id, String nom, String prenom, String pseudo, String mail, String tel, List<String> competences) {
+	public User(String id, String nom, String prenom, String pseudo, String mail, String tel, Map<Skill,Integer> competences) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -81,14 +84,29 @@ public class User {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public List<String> getCompetences() {
+
+	public Map<Skill, Integer> getCompetences() {
 		return competences;
 	}
-	public void setCompetences(List<String> competences) {
+
+	public void setCompetences(Map<Skill, Integer> competences) {
 		this.competences = competences;
 	}
+
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	
+	public void addCompetenceIfNotExists (Skill skill, Integer level)
+	
+	{ 
+	        if (!this.competences.containsKey(skill)) 
+	        {
+	        	this.competences.put(skill, level);
+	        }
+
+	}
+
+
 
 }
