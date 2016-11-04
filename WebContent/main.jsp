@@ -4,7 +4,7 @@
 <%@ page import="com.skillshare.metier.User" %>
 
 <%
-	HttpSession currentSession = request.getSession(false);
+	/* HttpSession currentSession = request.getSession(false);
 	if(currentSession ==null){
 		response.sendRedirect("connexion.jsp");
 		return;
@@ -17,7 +17,7 @@
 		return;
 	}
 	
-	String userName = user.getPrenom() + " " + user.getNom();
+	String userName = user.getPrenom() + " " + user.getNom(); */
 %>
 
 <!DOCTYPE html>
@@ -48,10 +48,10 @@
 						</div>
 					</li>
 					<li class="active disabled"><a>Recherche</a></li>
-					<li><a href="modifProfil.html">Profil</a></li>
+					<li><a href="modifProfil.jsp">Profil</a></li>
 					<li class="disabled"><a href="#">Demandes</a></li>
 					<li class="dropdown pull-right"><a data-toggle="dropdown"
-						class="dropdown-toggle"><% System.out.print(userName); %>><strong class="caret"></strong></a>
+						class="dropdown-toggle"><% //System.out.print(userName); %>><strong class="caret"></strong></a>
 						<ul class="dropdown-menu">
 							<li><a href="connexion.html">Se déconnecter</a></li>
 						</ul></li>

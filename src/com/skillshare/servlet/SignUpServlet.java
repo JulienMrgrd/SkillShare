@@ -47,7 +47,6 @@ public class SignUpServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return;
 	}
