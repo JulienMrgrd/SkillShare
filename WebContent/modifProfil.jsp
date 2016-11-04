@@ -128,7 +128,7 @@
 					<option>Base</option>
 					<option>Avancé</option>
 					<option>Expert</option>
-				</select> <a class="btn btn-success">Ajouter le skill</a>
+				</select> <a onClick="addSkill()" class="btn btn-success">Ajouter le skill</a>
 			</div>
 			<div class="row">
 				<div class="col-md-12">

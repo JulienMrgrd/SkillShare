@@ -41,12 +41,28 @@ function initUserSkills(){
 
 function deleteSkill(id){
 	$('#'+id).remove();
+	var index;
 	for(i=0; i<userSkills.length; i++){
 		if(userSkills[i].id == id){
+			index = i;
+			break;
 		}
 	}
+	userSkills.splice(index, 1);
 }
 
-function addSkill(skill,level){}
+function addSkill(){
+	var skill = 'JAVA';
+	var level = 2;
+	var newSkill = new Skill(skill,level);
+	for(i=0; i<userSkills.length; i++){
+		if(userSkills[i].id == newSkill.id){
+			alert(skill + " already exists in the list");
+			return;
+		}
+	}
+	userSkills.push(newSkill);
+	$('#skillList').append(newSkill.getHTML());	
+}
 
 usersSkills = initUserSkills();
