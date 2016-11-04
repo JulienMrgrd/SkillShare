@@ -48,3 +48,16 @@ function signUp(){
 	       error: error
 	    });
 }
+
+function signOut(){
+	
+	var success = function(){
+		window.location.replace("connexion.jsp");
+	}
+	
+	$.ajax({
+	       url : 'signOut',
+	       type : 'POST',
+	       success : success,
+	    });
+}
