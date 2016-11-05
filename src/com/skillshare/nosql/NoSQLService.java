@@ -4,8 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.cloudant.client.api.Database;
 import com.cloudant.client.api.model.Response;
+import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
 
 public class NoSQLService {
@@ -43,5 +48,6 @@ public class NoSQLService {
 	public List<User> searchProfiles(Map<String, String> params){
 		return null;
 	}
+	
 
 }

@@ -39,7 +39,7 @@ public class UpdateServet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		
 		String email = (String) request.getAttribute("email");
-		/*Rajouter la vérification que le mail n'existe pas */
+		/*Rajouter la vérification que le mail est unique */
 		String password = (String)request.getAttribute("password");
 		String firstname = (String)request.getAttribute("firstname");
 		String name = (String)request.getAttribute("name");

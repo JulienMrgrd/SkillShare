@@ -69,7 +69,9 @@
 					<label for="inputEmail3" class="col-sm-2 control-label">
 						Prenom </label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputEmail3"
+<!-- 						<input type="text" class="form-control" id="inputEmail3" -->
+						<input type="text" class="form-control" id="firstname" 
+
 							value="John" />
 					</div>
 				</div>
@@ -77,7 +79,9 @@
 					<label for="inputEmail3" class="col-sm-2 control-label">
 						Nom </label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputEmail3"
+<!-- 						<input type="text" class="form-control" id="inputEmail3" -->
+												<input type="text" class="form-control" id="lastname" 
+						
 							value="Bauer" />
 					</div>
 				</div>
@@ -86,7 +90,9 @@
 					<label for="inputEmail3" class="col-sm-2 control-label">
 						Email </label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3"
+<!-- 						<input type="email" class="form-control" id="inputEmail3" -->
+						<input type="email" class="form-control" id="email" 
+
 							value="john.bauer@gmail.com" />
 					</div>
 				</div>
@@ -95,7 +101,9 @@
 					<label for="inputPassword3" class="col-sm-2 control-label">
 						Mot de passe </label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3"
+<!-- 						<input type="password" class="form-control" id="inputPassword3" -->
+												<input type="password" class="form-control" id="password" 
+						
 							value="salut" />
 					</div>
 				</div>
@@ -136,7 +144,7 @@
 				<div class="col-md-12">
 					<div class="form-group">
 
-						<button type="submit" class="btn btn-success">Enregistrer
+						<button type="submit" class="btn btn-success" onClick="Modif()">Enregistrer
 							les modifications</button>
 					</div>
 				</div>

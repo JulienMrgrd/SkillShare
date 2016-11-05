@@ -1,5 +1,6 @@
 package com.skillshare.metier;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class User {
 	@SuppressWarnings("unused")
 	private String mdp; // le mdp ne doit pas être stocké dans l'objet. Juste un setter pour mettre en base, aucun getter
 	private String tel;
-	private Map<Skill,Integer> competences; //  peut contenir des objets String, à renseigner lors de la modif du profil
+	private Map<Skill,Integer> competences = new HashMap<>(); //  peut contenir des objets String, à renseigner lors de la modif du profil
 	
 	public User() {}
 	

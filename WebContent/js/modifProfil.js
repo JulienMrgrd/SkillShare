@@ -66,3 +66,35 @@ function addSkill(){
 }
 
 usersSkills = initUserSkills();
+
+function Modif(){
+	
+	alert (usersSkills);
+	
+	var success = function(){
+		//window.location.replace("main.jsp");
+		alet ("success");
+	}
+	
+	var error = function(){
+		alert('error');
+	}
+	
+	var data = {
+			lastname : document.getElementById('lastname').value,
+			firstname : document.getElementById('firstname').value,
+			email : document.getElementById('email').value,
+			tel : document.getElementById('tel').value,
+			password : document.getElementById('password').value,
+			skills : usersSkills
+			
+	}
+	
+	$.ajax({
+	       url : 'update',
+	       type : 'POST',
+	       data : data,
+	       success : success,
+	       error: error
+	    });
+}

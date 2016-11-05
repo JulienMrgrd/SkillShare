@@ -24,4 +24,15 @@
     <servlet-name>SignUpServlet</servlet-name>
     <url-pattern>/signUp</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>UpdateServlet</display-name>
+    <servlet-name>UpdateServlet</servlet-name>
+    <servlet-class>com.skillshare.servlet.UpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateServlet</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
