@@ -1,10 +1,7 @@
 package com.skillshare.metier;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
 
 public class User {
 	
@@ -98,16 +95,10 @@ public class User {
 		this.mdp = mdp;
 	}
 	
-	public void addCompetenceIfNotExists (Skill skill, Integer level)
-	
-	{ 
-	        if (!this.competences.containsKey(skill)) 
-	        {
-	        	this.competences.put(skill, level);
-	        }
-
+	public void addCompetenceIfNotExists (Skill skill, Integer level){ 
+        if (!this.competences.containsKey(skill)) {
+        	this.competences.put(skill, level);
+        }
 	}
-
-
 
 }

@@ -1,15 +1,8 @@
 package com.skillshare.nosql;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.cloudant.client.api.Database;
-import com.cloudant.client.api.model.Response;
 import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
 
@@ -20,34 +13,39 @@ public class NoSQLService {
 		db = CloudantClientMgr.getDB();	
 	}
 
-	public boolean connectionCheck(String pseudo, String pass)
-	{
+	public boolean connectionCheck(String pseudo, String pass){
+		//TODO
 		return true;
 	}
-
-	@SuppressWarnings("unchecked")
-	public String createAccount(User user)
-	{
-		Response resp = db.save(user);
-		Map<String, String> createdObject = db.find(HashMap.class, resp.getId());
-		if(createdObject !=null)
-		{
-			System.out.println();
-		}
-		return resp.getId();
-		
+	
+	
+	/**
+	 * Login exists
+	 * @param login
+	 * @return
+	 */
+	public boolean checkLogin(String login){
+		//TODO
+		return false;
 	}
 
-	public boolean changeInfos(User user)
-	{
-        //Database db = CloudantClientMgr.getDB();    
-        com.cloudant.client.api.model.Response resp = db.update(user);
+	public String createAccount(User user){
+		return db.save(user).getId();
+	}
+
+	public boolean changeInfos(User user) {
+        db.update(user);
         return true;
     }
 
-	public List<User> searchProfiles(Map<String, String> params){
+	public List<User> searchProfiles(Skill skill){
+		//TODO
 		return null;
 	}
 	
+	public static void main(String[] args) {
+		new NoSQLService().createAccount(new User("nkjhgkgkjgk"));
+		//TODO vos méthodes à tester ici
+	}
 
 }

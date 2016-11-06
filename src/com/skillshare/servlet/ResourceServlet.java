@@ -29,6 +29,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.skillshare.nosql.CloudantClientMgr;
 
 @Path("/favorites")
+@SuppressWarnings({"unchecked","rawtypes"})
 /**
  * CRUD service of todo list table. It uses REST style.
  */
@@ -124,7 +125,7 @@ public class ResourceServlet {
 					allDocs = initializeSampleData(db);
 				}
 
-				for (HashMap doc : allDocs) {
+				for (HashMap<?, ?> doc : allDocs) {
 					HashMap<String, Object> obj = db.find(HashMap.class, doc.get("_id") + "");
 					JsonObject jsonObject = new JsonObject();
 					LinkedTreeMap<String, Object> attachments = (LinkedTreeMap<String, Object>) obj.get("_attachments");

@@ -17,7 +17,7 @@ public class CloudantClientMgr {
 	private static CloudantClient cloudant = null;
 	private static Database db = null;
 
-	private static String databaseName = "skillsharedb";
+	private static String databaseName = "skillshare";
 
 	private static String user = null;
 	private static String password = null;
@@ -29,45 +29,32 @@ public class CloudantClientMgr {
 					return;
 				}
 				cloudant = createClient();
-
-			} // end synchronized
+			}
 		}
 	}
 
 	private static CloudantClient createClient() {
-		// VCAP_SERVICES is a system environment variable
-		// Parse it to obtain the NoSQL DB connection info
-		String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
-		String serviceName = null;
+		String VCAP_SERVICES = "{\"cloudantNoSQLDB\":[{\"name\":\"test2test-cloudantNoSQLDB\",\"label\":\"cloudantNoSQLDB\",\"tags\":[\"data_management\",\"ibm_created\",\"ibm_dedicated_public\"],\"plan\":\"Shared\",\"credentials\":{\"username\":\"11029888-34a7-4cd9-b7a0-d09310d2c903-bluemix\",\"password\":\"caf49bce59bac88efd681ba83e98556818edc1a03cc2fad2d870b71796127dc6\",\"host\":\"11029888-34a7-4cd9-b7a0-d09310d2c903-bluemix.cloudant.com\",\"port\":443,\"url\":\"https://11029888-34a7-4cd9-b7a0-d09310d2c903-bluemix:caf49bce59bac88efd681ba83e98556818edc1a03cc2fad2d870b71796127dc6@11029888-34a7-4cd9-b7a0-d09310d2c903-bluemix.cloudant.com\"}}]}";
 
-		if (VCAP_SERVICES != null) {
-			// parse the VCAP JSON structure
-			JsonObject obj = (JsonObject) new JsonParser().parse(VCAP_SERVICES);
-			Entry<String, JsonElement> dbEntry = null;
-			Set<Entry<String, JsonElement>> entries = obj.entrySet();
-			// Look for the VCAP key that holds the cloudant no sql db information
-			for (Entry<String, JsonElement> eachEntry : entries) {
-				if (eachEntry.getKey().toLowerCase().contains("cloudant")) {
-					dbEntry = eachEntry;
-					break;
-				}
+		JsonObject obj = (JsonObject) new JsonParser().parse(VCAP_SERVICES);
+		Entry<String, JsonElement> dbEntry = null;
+		Set<Entry<String, JsonElement>> entries = obj.entrySet();
+		// Look for the VCAP key that holds the cloudant no sql db information
+		for (Entry<String, JsonElement> eachEntry : entries) {
+			if (eachEntry.getKey().toLowerCase().contains("cloudant")) {
+				dbEntry = eachEntry;
+				break;
 			}
-			if (dbEntry == null) {
-				throw new RuntimeException("Could not find cloudantNoSQLDB key in VCAP_SERVICES env variable");
-			}
-
-			obj = (JsonObject) ((JsonArray) dbEntry.getValue()).get(0);
-			serviceName = (String) dbEntry.getKey();
-			System.out.println("Service Name - " + serviceName);
-
-			obj = (JsonObject) obj.get("credentials");
-
-			user = obj.get("username").getAsString();
-			password = obj.get("password").getAsString();
-
-		} else {
-			throw new RuntimeException("VCAP_SERVICES not found");
 		}
+		if (dbEntry == null) {
+			throw new RuntimeException("Could not find cloudantNoSQLDB key in VCAP_SERVICES env variable");
+		}
+
+		obj = (JsonObject) ((JsonArray) dbEntry.getValue()).get(0);
+		obj = (JsonObject) obj.get("credentials");
+
+		user = obj.get("username").getAsString();
+		password = obj.get("password").getAsString();
 
 		try {
 			CloudantClient client = ClientBuilder.account(user)
@@ -95,6 +82,5 @@ public class CloudantClientMgr {
 		return db;
 	}
 
-	private CloudantClientMgr() {
-	}
+	private CloudantClientMgr() { }
 }
