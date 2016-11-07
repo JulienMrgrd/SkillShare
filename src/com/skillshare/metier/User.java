@@ -20,16 +20,6 @@ public class User {
 		this.id = id;
 	}
 	
-	public User(String id, String nom, String prenom, String mail, String tel, Map<Skill,Integer> competences) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.tel = tel;
-		this.competences = competences;
-	}
-	
 	public User(String nom, String prenom, String mail, String tel, Map<Skill,Integer> competences) {
 		super();
 		this.nom = nom;

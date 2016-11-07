@@ -12,23 +12,24 @@ public class NoSQLService {
 	public NoSQLService() {
 		db = CloudantClientMgr.getDB();	
 	}
+	
+	public User findById(String id){
+		User doc = db.find(User.class,id);
+		doc.setId(id);
+		return doc;
+	}
 
 	public User connectionCheck(String mail, String pass){
-		//TODO
+		List<User> users = db.findByIndex("\"selector\": {\"mail\": \""+mail+"\", \"mdp\": \""+pass+"\"}", User.class);
+		if(users != null && users.size()==1){
+			return users.get(0);
+		}
 		return null;
 	}
 	
-	/**
-	 * Login exists
-	 * @param login
-	 * @return
-	 */
 	public boolean checkMail(String mail){
-		List<User> users = db.findByIndex("\"selector\": {* \"mail\": \""+mail+"\"* }", User.class);
-		if(users != null && !users.isEmpty()){
-			return true;
-		}
-		return false;
+		List<User> users = db.findByIndex("\"selector\": { \"mail\": \""+mail+"\"}", User.class);
+		return (users != null && users.size()==1);
 	}
 
 	public User createAccount(User user){
@@ -48,9 +49,16 @@ public class NoSQLService {
 	}
 	
 	public static void main(String[] args) {
-		User u = new NoSQLService().createAccount(new User("test", "test", "test", "test", "test", null));
-		System.out.println(u);
-		//TODO vos méthodes à tester ici
+		NoSQLService no = new NoSQLService(); 
+//		User user = new User("Julien2", "Margarido2", "jm2@gmail.com", "0606060608", null);
+//		user.setMdp("mdp");
+//		User res = no.createAccount(user);
+//		System.out.println(res.getId());
+		
+		User b = no.connectionCheck("jm2@gmail.com", "mdp");
+		System.out.println(b);
+		System.out.println("Fin tests");
+		//TODO vos méthodes à tester ici (en mode débug, c'est cool)
 	}
 
 }
