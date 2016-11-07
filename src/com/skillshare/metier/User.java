@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class User {
 	
-	private String id;
+	private String _id; // obligatoire
+	private String _rev; // obligatoire (voir en base)
 	private String nom;
 	private String prenom;
 	private String mail;
@@ -16,8 +17,8 @@ public class User {
 	
 	public User() {}
 	
-	public User(String id) {
-		this.id = id;
+	public User(String _id) {
+		this._id = _id;
 	}
 	
 	public User(String nom, String prenom, String mail, String tel, Map<Skill,Integer> competences) {
@@ -34,7 +35,7 @@ public class User {
 	 * @param copy
 	 */
 	public User(User copy){
-		this.id = copy.id;
+		this._id = copy._id;
 		this.nom = copy.nom;
 		this.prenom = copy.prenom;
 		this.mail = copy.mail;
@@ -43,10 +44,16 @@ public class User {
 	}
 	
 	public String getId() {
-		return id;
+		return _id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this._id = id;
+	}
+	public String getRev() {
+		return _rev;
+	}
+	public void setRev(String _rev) {
+		this._rev = _rev;
 	}
 	public String getNom() {
 		return nom;

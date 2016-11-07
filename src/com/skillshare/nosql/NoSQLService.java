@@ -3,6 +3,7 @@ package com.skillshare.nosql;
 import java.util.List;
 
 import com.cloudant.client.api.Database;
+import com.cloudant.client.api.model.Response;
 import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
 
@@ -33,7 +34,9 @@ public class NoSQLService {
 	}
 
 	public User createAccount(User user){
-		user.setId(db.save(user).getId());
+		Response tmp = db.save(user);
+		user.setId(tmp.getId());
+		user.setRev(tmp.getRev());
 		user.setMdp(null);
 		return user;
 	}
@@ -55,8 +58,11 @@ public class NoSQLService {
 //		User res = no.createAccount(user);
 //		System.out.println(res.getId());
 		
-		User b = no.connectionCheck("jm2@gmail.com", "mdp");
-		System.out.println(b);
+//		User b = no.connectionCheck("jm2@gmail.com", "mdp");
+//		System.out.println(b);
+//		User user = new User("Julien3", "Margarido3", "jm3@gmail.com", "0606060608", null);
+//		User res = no.createAccount(user);
+//		no.changeInfos(user);
 		System.out.println("Fin tests");
 		//TODO vos méthodes à tester ici (en mode débug, c'est cool)
 	}
