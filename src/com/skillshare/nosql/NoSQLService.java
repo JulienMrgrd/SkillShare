@@ -18,7 +18,6 @@ public class NoSQLService {
 		return true;
 	}
 	
-	
 	/**
 	 * Login exists
 	 * @param login

@@ -1,14 +1,15 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ page import="com.skillshare.metier.User" %>
 
 <%
-	/* HttpSession currentSession = request.getSession(false);
-	if(currentSession ==null){
+	HttpSession currentSession = request.getSession(false);
+/* 	if(currentSession ==null){
 		response.sendRedirect("connexion.jsp");
 		return;
-	}
+	} */
 	
 	User user = (User)currentSession.getAttribute("user");
 	
@@ -17,7 +18,7 @@
 		return;
 	}
 	
-	String userName = user.getPrenom() + " " + user.getNom(); */
+	String userName = user.getPrenom() + " " + user.getNom();
 %>
 
 <!DOCTYPE html>
@@ -118,7 +119,7 @@
 
 	</div>
 
-	<script src="js/jquery-3.1.1.slim.min.js"></script>
+	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 
