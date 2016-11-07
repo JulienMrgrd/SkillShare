@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="com.skillshare.metier.User" %>
+<%@ page import="com.skillshare.metier.User"%>
 
 <%
 	HttpSession currentSession = request.getSession(false);
@@ -43,18 +43,16 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="nav nav-tabs">
-					<li class="navbar-header">
-						<div class="navbar-brand">
-							<h2>SkillShare</h2>
-						</div>
+					<li class="navbar-brand">
+						<h2>SkillShare</h2>
 					</li>
 					<li class="active disabled"><a>Recherche</a></li>
 					<li><a href="modifProfil.jsp">Profil</a></li>
 					<li class="disabled"><a href="#">Demandes</a></li>
 					<li class="dropdown pull-right"><a data-toggle="dropdown"
-						class="dropdown-toggle"><% //System.out.print(userName); %>><strong class="caret"></strong></a>
+						class="dropdown-toggle"><%= userName %><strong class="caret"></strong></a>
 						<ul class="dropdown-menu">
-							<li><a href="connexion.html">Se déconnecter</a></li>
+							<li><<a onclick="signOut()">Se déconnecter</a></li>
 						</ul></li>
 				</ul>
 
@@ -85,9 +83,7 @@
 											<td>
 												<div class="media">
 													<div class="media-body">
-														<h4 class="title">
-															Lorem Impsum
-														</h4>
+														<h4 class="title">Lorem Impsum</h4>
 														<p class="summary">Ut enim ad minim veniam, quis
 															nostrud exercitation...</p>
 													</div>
@@ -98,9 +94,7 @@
 											<td>
 												<div class="media">
 													<div class="media-body">
-														<h4 class="title">
-															Lorem Impsum
-														</h4>
+														<h4 class="title">Lorem Impsum</h4>
 														<p class="summary">Ut enim ad minim veniam, quis
 															nostrud exercitation...</p>
 													</div>
