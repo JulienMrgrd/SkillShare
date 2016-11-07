@@ -1,6 +1,7 @@
 package com.skillshare.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import org.json.JSONException;
 
 import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
+import com.skillshare.nosql.NoSQLService;
 import com.skillshare.services.SkillShareService;
 
 
@@ -36,22 +38,35 @@ public class UpdateServet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
+		//User user = (User) session.getAttribute("user");
+		
+		User user = new NoSQLService().createAccount(new User("test", "test", "test", "test", "test", null));
+
 		
 		String email = (String) request.getAttribute("email");
 		/*Rajouter la vérification que le mail est unique */
 		String password = (String)request.getAttribute("password");
 		String firstname = (String)request.getAttribute("firstname");
-		String name = (String)request.getAttribute("name");
+		String name = (String)request.getAttribute("lastname");
 		String tel = (String)request.getAttribute("tel");
 		JSONArray skills = (JSONArray)request.getAttribute("skills");
 		
+		System.out.println("email:"+email);
+		System.out.println("password:"+password);
+		System.out.println("firstname"+firstname);
+		System.out.println("name:"+name);
+		System.out.println("tel:"+tel);
+		System.out.println("skills:"+skills);
+
+
 		
 		if(email == null) email = user.getMail();
 		if(firstname == null) firstname = user.getPrenom();
 		if(name == null) name = user.getNom();
 		if(tel == null) tel = user.getTel();
 		Map<Skill, Integer> competences = user.getCompetences();
+		Map<Skill,Integer> new_competences = new HashMap<>();
+
 		
         for (int i=0; i<skills.length(); i++)	
         {
@@ -59,7 +74,7 @@ public class UpdateServet extends HttpServlet {
         	{
 				Skill skill = (Skill) skills.getJSONObject(i).get("skill");
 				Integer level = (Integer) skills.getJSONObject(i).get("level");
-				user.addCompetenceIfNotExists(skill, level);
+				new_competences.put(skill, level);
 
 			} 
         	catch (JSONException e) 

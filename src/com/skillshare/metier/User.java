@@ -104,11 +104,6 @@ public class User {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	
-	public void addCompetenceIfNotExists (Skill skill, Integer level){ 
-        if (!this.competences.containsKey(skill)) {
-        	this.competences.put(skill, level);
-        }
-	}
+
 
 }

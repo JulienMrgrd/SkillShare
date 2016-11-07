@@ -61,9 +61,9 @@ public class SkillShareService
 	 * mes informations
 	 * @param params
 	 */
-	public void changeProfilInfos(User user)
+	public User changeProfilInfos(User user)
 	{
-         nosql.changeInfos(user);
+         return nosql.changeInfos(user);
 	}
 
 	/**
