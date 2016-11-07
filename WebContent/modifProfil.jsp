@@ -70,7 +70,7 @@
 						<div class="col-sm-10">
 							<!-- 						<input type="text" class="form-control" id="inputEmail3" -->
 							<input type="text" class="form-control" id="firstname"
-								value="John" />
+								value=<%= user.getPrenom() %> />
 						</div>
 					</div>
 					<div class="row">
@@ -79,7 +79,7 @@
 						<div class="col-sm-10">
 							<!-- 						<input type="text" class="form-control" id="inputEmail3" -->
 							<input type="text" class="form-control" id="lastname"
-								value="Bauer" />
+								value=<%= user.getNom() %> />
 						</div>
 					</div>
 
@@ -89,7 +89,7 @@
 						<div class="col-sm-10">
 							<!-- 						<input type="email" class="form-control" id="inputEmail3" -->
 							<input type="email" class="form-control" id="email"
-								value="john.bauer@gmail.com" />
+								value="<%= user.getMail() %>" />
 						</div>
 					</div>
 
@@ -99,7 +99,7 @@
 						<div class="col-sm-10">
 							<!-- 						<input type="password" class="form-control" id="inputPassword3" -->
 							<input type="password" class="form-control" id="password"
-								value="salut" />
+								value="password" />
 						</div>
 					</div>
 
@@ -108,7 +108,7 @@
 							Confirmation</label>
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="inputPassword3"
-								value="salut" />
+								value="password" />
 						</div>
 					</div>
 				</div>
