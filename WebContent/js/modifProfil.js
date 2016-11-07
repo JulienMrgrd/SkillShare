@@ -8,7 +8,7 @@ Skill.prototype.getLevelLabel = function(){
 	if(this.level==1)
 		return 'Base';
 	if(this.level==2);
-		return 'Avancé';
+	return 'Avancé';
 	if(this.level == 3)
 		return 'Expert';
 }
@@ -37,7 +37,7 @@ function initUserSkills(){
 	for(i=0; i<userSkills.length; i++){
 		$('#skillList').append(userSkills[i].getHTML());
 	}
-	}
+}
 
 function deleteSkill(id){
 	$('#'+id).remove();
@@ -65,36 +65,35 @@ function addSkill(){
 	$('#skillList').append(newSkill.getHTML());	
 }
 
-usersSkills = initUserSkills();
+userSkills = initUserSkills();
 
 function Modif(){
-	
-	alert (usersSkills);
-	
+
+	alert (userSkills);
+
 	var success = function(){
 		//window.location.replace("main.jsp");
 		alet ("success");
 	}
-	
+
 	var error = function(){
 		alert('error');
 	}
-	
+
 	var data = {
 			lastname : document.getElementById('lastname').value,
 			firstname : document.getElementById('firstname').value,
 			email : document.getElementById('email').value,
 			tel : document.getElementById('tel').value,
 			password : document.getElementById('password').value,
-			skills : usersSkills
-			
+			skills : userSkills	
 	}
-	
+
 	$.ajax({
-	       url : 'update',
-	       type : 'POST',
-	       data : data,
-	       success : success,
-	       error: error
-	    });
+		url : 'update',
+		type : 'POST',
+		data : data,
+		success : success,
+		error: error
+	});
 }

@@ -6,10 +6,10 @@
 
 <%
 	HttpSession currentSession = request.getSession(false);
-/* 	if(currentSession ==null){
+	if(currentSession ==null){
 		response.sendRedirect("connexion.jsp");
 		return;
-	} */
+	}
 	
 	User user = (User)currentSession.getAttribute("user");
 	
