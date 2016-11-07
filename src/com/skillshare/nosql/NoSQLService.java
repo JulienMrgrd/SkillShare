@@ -13,7 +13,7 @@ public class NoSQLService {
 		db = CloudantClientMgr.getDB();	
 	}
 
-	public User connectionCheck(String pseudo, String pass){
+	public User connectionCheck(String mail, String pass){
 		//TODO
 		return null;
 	}
@@ -23,8 +23,11 @@ public class NoSQLService {
 	 * @param login
 	 * @return
 	 */
-	public boolean checkLogin(String login){
-		//TODO
+	public boolean checkMail(String mail){
+		List<User> users = db.findByIndex("\"selector\": {* \"mail\": \""+mail+"\"* }", User.class);
+		if(users != null && !users.isEmpty()){
+			return true;
+		}
 		return false;
 	}
 
