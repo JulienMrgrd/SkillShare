@@ -21,9 +21,9 @@ public class SkillShareService
 	// TODO : fonctionnalitées
 
 	/**	
-	 * En tant qu'utilisateur, je peux créer un compte à partir de mon nom, prénom, pseudo,
-	 * 	email, mot de passe et téléphone
-	 * 	dans le but d'être enregistré sur le site pour pouvoir me connecter.
+	 * En tant qu'utilisateur, je peux créer un compte à partir de mon nom, prénom, 
+	 * email, mot de passe et téléphone
+	 * dans le but d'être enregistré sur le site pour pouvoir me connecter.
 	 * @param User 
 	 */
 	public void createAccount(User user)
@@ -35,11 +35,11 @@ public class SkillShareService
 	
 	
 	/**	
-	 * En tant qu'utilisateur, je peux me connecter avec mon pseudo et mot de passe
+	 * En tant qu'utilisateur, je peux me connecter avec mon mail et mot de passe
 	 *  à l'application dans le but de pouvoir accéder au contenu réservé du site.
 	 */
-	public User checkConnection(String pseudo, String pass)	{
-		return nosql.connectionCheck(pseudo,pass);
+	public User checkConnection(String mail, String pass)	{
+		return nosql.connectionCheck(mail,pass);
 	}
 	
 	

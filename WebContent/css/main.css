@@ -15,3 +15,9 @@ form .btn{
 body{
 	background-color:#ffffff;
 }
+
+.panel-default{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-right: 10px;
+}

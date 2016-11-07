@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class User {
 	
-	private String id;
+	private String _id; // obligatoire
+	private String _rev; // obligatoire (voir en base)
 	private String nom;
 	private String prenom;
-	private String pseudo;
 	private String mail;
 	@SuppressWarnings("unused")
 	private String mdp; // le mdp ne doit pas être stocké dans l'objet. Juste un setter pour mettre en base, aucun getter
@@ -17,26 +17,14 @@ public class User {
 	
 	public User() {}
 	
-	public User(String id) {
-		this.id = id;
+	public User(String _id) {
+		this._id = _id;
 	}
 	
-	public User(String id, String nom, String prenom, String pseudo, String mail, String tel, Map<Skill,Integer> competences) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.pseudo = pseudo;
-		this.mail = mail;
-		this.tel = tel;
-		this.competences = competences;
-	}
-	
-	public User(String nom, String prenom, String pseudo, String mail, String tel, Map<Skill,Integer> competences) {
+	public User(String nom, String prenom, String mail, String tel, Map<Skill,Integer> competences) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.pseudo = pseudo;
 		this.mail = mail;
 		this.tel = tel;
 		this.competences = competences;
@@ -47,20 +35,25 @@ public class User {
 	 * @param copy
 	 */
 	public User(User copy){
-		this.id = copy.id;
+		this._id = copy._id;
 		this.nom = copy.nom;
 		this.prenom = copy.prenom;
-		this.pseudo = copy.pseudo;
 		this.mail = copy.mail;
 		this.tel = copy.tel;
 		this.competences = copy.competences;
 	}
 	
 	public String getId() {
-		return id;
+		return _id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this._id = id;
+	}
+	public String getRev() {
+		return _rev;
+	}
+	public void setRev(String _rev) {
+		this._rev = _rev;
 	}
 	public String getNom() {
 		return nom;
@@ -73,12 +66,6 @@ public class User {
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-	public String getPseudo() {
-		return pseudo;
-	}
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
 	}
 	public String getMail() {
 		return mail;

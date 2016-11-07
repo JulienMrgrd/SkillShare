@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cloudant.client.api.Database;
+import com.cloudant.client.api.model.Response;
 import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
 import com.skillshare.services.SkillShareService;
@@ -19,24 +20,30 @@ public class NoSQLService {
 	public NoSQLService() {
 		db = CloudantClientMgr.getDB();	
 	}
+	
+	public User findById(String id){
+		User doc = db.find(User.class,id);
+		doc.setId(id);
+		return doc;
+	}
 
-	public User connectionCheck(String pseudo, String pass){
-		//TODO
+	public User connectionCheck(String mail, String pass){
+		List<User> users = db.findByIndex("\"selector\": {\"mail\": \""+mail+"\", \"mdp\": \""+pass+"\"}", User.class);
+		if(users != null && users.size()==1){
+			return users.get(0);
+		}
 		return null;
 	}
 	
-	/**
-	 * Login exists
-	 * @param login
-	 * @return
-	 */
-	public boolean checkLogin(String login){
-		//TODO
-		return false;
+	public boolean checkMail(String mail){
+		List<User> users = db.findByIndex("\"selector\": { \"mail\": \""+mail+"\"}", User.class);
+		return (users != null && users.size()==1);
 	}
 
 	public User createAccount(User user){
-		user.setId(db.save(user).getId());
+		Response tmp = db.save(user);
+		user.setId(tmp.getId());
+		user.setRev(tmp.getRev());
 		user.setMdp(null);
 		return user;
 	}
@@ -51,64 +58,21 @@ public class NoSQLService {
 		return null;
 	}
 	
-	public static void main(String[] args) throws JSONException 
-	{
-		SkillShareService service = new SkillShareService();
 
-		User user = new NoSQLService().createAccount(new User("1234","test", "test", "test", "test", "test", null));
-		System.out.println(user.getId());
+	public static void main(String[] args) {
+		NoSQLService no = new NoSQLService(); 
+//		User user = new User("Julien2", "Margarido2", "jm2@gmail.com", "0606060608", null);
+//		user.setMdp("mdp");
+//		User res = no.createAccount(user);
+//		System.out.println(res.getId());
 		
-		Map<Skill, Integer> competences = user.getCompetences();
-		
-		JSONArray skills = new JSONArray();
-		JSONObject jo = new JSONObject();
-		jo.put("skill",Skill.JAVA);
-		jo.put("level",2);
-		skills.put(jo);
-		
-		
-		Map<Skill,Integer> new_competences = new HashMap<>();
-
-		
-        for (int i=0; i<skills.length(); i++)	
-        {
-        	try 
-        	{
-				Skill skill = (Skill) skills.getJSONObject(i).get("skill");
-				Integer level = (Integer) skills.getJSONObject(i).get("level");
-
-				new_competences.put(skill, level);
-
-			} 
-        	catch (JSONException e) 
-        	{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	
-
-        }
-        
-		user.setId(user.getId());
-		user.setPrenom("lina");
-		user.setNom("nom");
-		user.setTel("123456789");
-		user.setMail("hi.lina@gmail.com");
-		user.setMdp("123456789");
-		user.setCompetences(new_competences);
-		User user2 = service.changeProfilInfos(user);
-		System.out.println(user2.getId());
-		System.out.println(user2.getNom());
-		System.out.println(user2.getPrenom());
-		System.out.println(user2.getMail());
-		System.out.println(user2.getCompetences());
-
-
-
-
-
-
-		//TODO vos méthodes à tester ici
+//		User b = no.connectionCheck("jm2@gmail.com", "mdp");
+//		System.out.println(b);
+//		User user = new User("Julien3", "Margarido3", "jm3@gmail.com", "0606060608", null);
+//		User res = no.createAccount(user);
+//		no.changeInfos(user);
+		System.out.println("Fin tests");
+		//TODO vos méthodes à tester ici (en mode débug, c'est cool)
 	}
 
 }

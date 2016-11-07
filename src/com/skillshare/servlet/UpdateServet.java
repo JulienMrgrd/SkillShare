@@ -40,7 +40,7 @@ public class UpdateServet extends HttpServlet {
 		HttpSession session = request.getSession();
 		//User user = (User) session.getAttribute("user");
 		
-		User user = new NoSQLService().createAccount(new User("test", "test", "test", "test", "test", null));
+		User user = new NoSQLService().createAccount(new User());
 
 		
 		String email = (String) request.getAttribute("email");
