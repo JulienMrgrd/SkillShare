@@ -38,8 +38,7 @@ public class SkillShareService
 	 * En tant qu'utilisateur, je peux me connecter avec mon pseudo et mot de passe
 	 *  à l'application dans le but de pouvoir accéder au contenu réservé du site.
 	 */
-	public boolean checkConnection(String pseudo, String pass)	
-	{
+	public User checkConnection(String pseudo, String pass)	{
 		return nosql.connectionCheck(pseudo,pass);
 	}
 	

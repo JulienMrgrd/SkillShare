@@ -13,9 +13,9 @@ public class NoSQLService {
 		db = CloudantClientMgr.getDB();	
 	}
 
-	public boolean connectionCheck(String pseudo, String pass){
+	public User connectionCheck(String pseudo, String pass){
 		//TODO
-		return true;
+		return null;
 	}
 	
 	/**
@@ -28,8 +28,10 @@ public class NoSQLService {
 		return false;
 	}
 
-	public String createAccount(User user){
-		return db.save(user).getId();
+	public User createAccount(User user){
+		user.setId(db.save(user).getId());
+		user.setMdp(null);
+		return user;
 	}
 
 	public boolean changeInfos(User user) {
@@ -43,7 +45,8 @@ public class NoSQLService {
 	}
 	
 	public static void main(String[] args) {
-		new NoSQLService().createAccount(new User("nkjhgkgkjgk"));
+		User u = new NoSQLService().createAccount(new User("test", "test", "test", "test", "test", null));
+		System.out.println(u);
 		//TODO vos méthodes à tester ici
 	}
 

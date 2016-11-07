@@ -31,6 +31,16 @@ public class User {
 		this.tel = tel;
 		this.competences = competences;
 	}
+	
+	public User(String nom, String prenom, String pseudo, String mail, String tel, Map<Skill,Integer> competences) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.pseudo = pseudo;
+		this.mail = mail;
+		this.tel = tel;
+		this.competences = competences;
+	}
 
 	/**
 	 * Constructeur par copie

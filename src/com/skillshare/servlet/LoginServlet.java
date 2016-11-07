@@ -37,17 +37,19 @@ public class LoginServlet extends HttpServlet {
 		String login = (String) request.getParameter("email");
 		String password = (String)request.getParameter("password");
 		
-		if(login != null && password != null && service.checkConnection(login, password))
-		{
-			HttpSession session = request.getSession();
-			User user = new User(login);
-			session.setAttribute("user", user);
-			response.setStatus(HttpServletResponse.SC_ACCEPTED);
-			return;
+		if(login != null && password != null) {
+			User u = service.checkConnection(login, password);
+			
+			if(u!=null){
+				HttpSession session = request.getSession();
+				session.setAttribute("user", u);
+				response.setStatus(HttpServletResponse.SC_ACCEPTED);
+				return;
+			} else {
+				response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			}
 		}
-		
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-		
 	}
 
 }
