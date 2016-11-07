@@ -21,11 +21,11 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String email = (String) request.getAttribute("email");
-		String password = (String)request.getAttribute("password");
-		String firstname = (String)request.getAttribute("firstname");
-		String name = (String)request.getAttribute("name");
-		String tel = (String)request.getAttribute("tel");
+		String email = (String) request.getParameter("email");
+		String password = (String)request.getParameter("password");
+		String firstname = (String)request.getParameter("firstname");
+		String name = (String)request.getParameter("lastname");
+		String tel = (String)request.getParameter("tel");
 
 		if(email == null || password == null || firstname == null || name == null || tel == null)
 		{
