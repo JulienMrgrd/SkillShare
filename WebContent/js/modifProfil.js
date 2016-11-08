@@ -26,19 +26,38 @@ Skill.prototype.toJson = function(){
 	};
 }
 
-//var userSkills = [];
+var userSkills=[];
 
 var userSkills = initUserSkills();
+//
+//
+//function initUserSkills()
+//{
+//	userSkills = [new Skill('C',1), new Skill('C_SHARP', 2)];
+//	for(i=0; i<userSkills.length; i++)
+//	{
+//		$('#skillList').append(userSkills[i].getHTML());
+//	}
+//
+//	return userSkills;
+//}
 
 function initUserSkills()
 {
-	userSkills = [new Skill('C',1), new Skill('C_SHARP', 2)];
-	for(i=0; i<userSkills.length; i++)
-	{
-		$('#skillList').append(userSkills[i].getHTML());
-	}
+	$('#skillList li').each(function (i) {
 
+        var index = $(this).index();
+        var text = $(this).text();
+        var value = $(this).attr('value');
+        var elem = value.split('--');
+        
+    	var newSkill = new Skill(elem[0],elem[1]);
+    	userSkills.push(newSkill);
+    });
+	
 	return userSkills;
+
+
 }
 
 function deleteSkill(id){
@@ -72,17 +91,16 @@ function addSkill(){
 function Modif()
 {
 
-
-	var success = function(){
-		//window.location.replace("main.jsp");
-		alert ("success");
-	}
-	
-
-
-	var error = function(){
-		alert('error');
-	}
+//	var success = function(){
+//		//window.location.replace("main.jsp");
+//		alert ("success");
+//	}
+//	
+//
+//
+//	var error = function(){
+//		alert('error');
+//	}
 
 	var data = {
 			lastname : document.getElementById('lastname').value,
@@ -92,14 +110,34 @@ function Modif()
 			skills : JSON.stringify(userSkills)	
 	}
 	
-	$.ajax({
-	       url : 'update',
-	       type : 'POST',
-		   dataType : 'json',
-	       data : data,
-	       success : success,
-	       error: error
-	    });
+
+	
+	$.ajax
+	({
+		type: "POST",
+		url : "update",
+		data : data,
+		dataType : 'JSON',
+		success : function(data) 
+		{
+
+			var resultat = data;
 
 
+
+        	if (resultat.message==1)
+			{
+                alert ("Votre profil a été modifié");
+        		window.location.replace("modifProfil.jsp");
+			}
+
+		},
+		error : function(XHR, testStatus, errorThrown) 
+		{
+			console.log("status: " + XHR.status + ", erreur: " + XHR.responseText);
+		}
+	});
 }
+
+
+

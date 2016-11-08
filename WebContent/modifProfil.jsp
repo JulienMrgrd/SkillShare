@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="com.skillshare.metier.User"%>
+<%@ page import="java.util.Map"%>
+
 
 <%
 	HttpSession currentSession = request.getSession(false);
@@ -19,6 +21,8 @@
 	}
 
 	String userName = user.getPrenom() + " " + user.getNom();
+	 Map<Skill,Integer> competences = user.getCompetences();
+
 %>
 
 <!DOCTYPE html>
@@ -115,7 +119,31 @@
 				<div id="skills" class="col-sm-6 panel panel-default">
 
 					<ul id="skillList">
-					</ul>
+						<%
+								for (Map.Entry<Skill, Integer> entry : competences.entrySet()) {
+									Integer levelval = entry.getValue();
+									String val =null;
+									if (levelval==1) val ="Base";
+									if (levelval==2) val ="Avancé";
+									if (levelval==3) val ="Expert";
+
+
+						%>
+							
+						<li id='<%="id"+entry.getKey()%>' 
+						    class='skill-item' 
+						    value='<%=entry.getKey()+"--"+entry.getValue()%>'						 > 
+						<%=entry.getKey()+" "+val%>
+						<a onclick="deleteSkill('<%="id"+entry.getKey()%>');"> Supprimer</a>
+						</li>
+
+						
+						<%
+						 
+							}
+						%>
+
+						</ul>
 					<select id='skillItem'>
 						<%
 							for (Skill skill : Skill.values()) {

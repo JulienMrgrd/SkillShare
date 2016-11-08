@@ -99,6 +99,8 @@ public class User {
 		
 		this.competences.put(skill,level);
 	}
+	
+
 
 
 }

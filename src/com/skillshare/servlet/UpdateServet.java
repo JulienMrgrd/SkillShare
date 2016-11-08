@@ -90,7 +90,15 @@ public class UpdateServet extends HttpServlet {
 //		System.out.println(user2.getCompetences());
 
 		session.setAttribute("user", user2);
-		response.setStatus(HttpServletResponse.SC_ACCEPTED);
+		//response.setStatus(HttpServletResponse.SC_ACCEPTED);
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("message", 1);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.getWriter().print(jo);
 		return;
 	}
 
