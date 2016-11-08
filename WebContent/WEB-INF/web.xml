@@ -34,12 +34,12 @@
 	</servlet-mapping>
 	<servlet>
 		<description></description>
-		<display-name>UpdateServlet</display-name>
-		<servlet-name>UpdateServlet</servlet-name>
-		<servlet-class>com.skillshare.servlet.UpdateServlet</servlet-class>
+		<display-name>UpdateServet</display-name>
+		<servlet-name>UpdateServet</servlet-name>
+		<servlet-class>com.skillshare.servlet.UpdateServet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>UpdateServlet</servlet-name>
+		<servlet-name>UpdateServet</servlet-name>
 		<url-pattern>/update</url-pattern>
 	</servlet-mapping>
 

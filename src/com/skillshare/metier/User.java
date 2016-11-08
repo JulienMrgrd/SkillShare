@@ -84,12 +84,20 @@ public class User {
 		return competences;
 	}
 
-	public void setCompetences(Map<Skill, Integer> competences) {
+	public void setCompetences(Map<Skill, Integer> competences) 
+	{
+		//this.competences.clear();
 		this.competences = competences;
 	}
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+	
+	public void addCompetences(Skill skill, Integer level)
+	{
+		
+		this.competences.put(skill,level);
 	}
 
 

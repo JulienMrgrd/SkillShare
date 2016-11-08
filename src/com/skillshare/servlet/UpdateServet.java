@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.skillshare.metier.Skill;
 import com.skillshare.metier.User;
@@ -21,13 +22,8 @@ import com.skillshare.services.SkillShareService;
 
 public class UpdateServet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private SkillShareService service = new SkillShareService();
-
-
-    public UpdateServet() {
-        super();
-    }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,66 +33,63 @@ public class UpdateServet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+
 		HttpSession session = request.getSession();
-		//User user = (User) session.getAttribute("user");
-		
-		User user = new NoSQLService().createAccount(new User());
+		User user = (User) session.getAttribute("user");
 
-		
-		String email = (String) request.getAttribute("email");
-		/*Rajouter la vérification que le mail est unique */
-		String password = (String)request.getAttribute("password");
-		String firstname = (String)request.getAttribute("firstname");
-		String name = (String)request.getAttribute("lastname");
-		String tel = (String)request.getAttribute("tel");
-		JSONArray skills = (JSONArray)request.getAttribute("skills");
-		
-		System.out.println("email:"+email);
-		System.out.println("password:"+password);
-		System.out.println("firstname"+firstname);
-		System.out.println("name:"+name);
-		System.out.println("tel:"+tel);
-		System.out.println("skills:"+skills);
+		String email = null, password=null, firstname=null, name=null;
+		String skillstring = null;
 
 
-		
+		if (request.getParameter("email")!=null) email =  request.getParameter("email");
+		if (request.getParameter("password")!=null) password =  request.getParameter("password");
+		if (request.getParameter("firstname")!=null) firstname =  request.getParameter("firstname");
+		if (request.getParameter("lastname")!=null) name =  request.getParameter("lastname");
+		if (request.getParameter("skills")!=null) skillstring =  request.getParameter("skills");
+
+
 		if(email == null) email = user.getMail();
 		if(firstname == null) firstname = user.getPrenom();
 		if(name == null) name = user.getNom();
-		if(tel == null) tel = user.getTel();
-		Map<Skill, Integer> competences = user.getCompetences();
-		Map<Skill,Integer> new_competences = new HashMap<>();
 
-		
-        for (int i=0; i<skills.length(); i++)	
-        {
-        	try 
-        	{
-				Skill skill = (Skill) skills.getJSONObject(i).get("skill");
-				Integer level = (Integer) skills.getJSONObject(i).get("level");
-				new_competences.put(skill, level);
 
-			} 
-        	catch (JSONException e) 
-        	{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try 
+		{
+
+			JSONArray skills = new JSONArray(skillstring);
+			user.getCompetences().clear();
+			for (int i=0; i<skills.length(); i++)	
+			{
+				String skill = (String) skills.getJSONObject(i).get("skill");
+				Integer level = (Integer) skills.getJSONObject(i).getInt("level");
+				//new_competences.put(Skill.valueOf(skill), level); 
+				user.addCompetences(Skill.valueOf(skill), level);
+
 			}
-        	
+		} 
+		catch (JSONException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-        }
 
-		//User userup = new User();
+
 		user.setPrenom(firstname);
 		user.setNom(name);
-		user.setTel(tel);
 		user.setMail(email);
-		user.setMdp(password);
-		user.setCompetences(competences);
-		service.changeProfilInfos(user);
+		//user.setMdp(password);
 
-		session.setAttribute("user", user);
 
+
+		User user2 =service.changeProfilInfos(user);
+		//System.out.println("Après update");
+//		System.out.println(user2.getPrenom());
+//		System.out.println(user2.getNom());
+//		System.out.println(user2.getMail());
+//		System.out.println(user2.getCompetences());
+
+		session.setAttribute("user", user2);
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return;
 	}

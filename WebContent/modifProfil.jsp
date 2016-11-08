@@ -136,11 +136,18 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<div class="form-group">
+<!-- 						<div class="form-group"> -->
 
-							<button type="submit" class="btn btn-danger" onClick="Modif()">Enregistrer
-								les modifications</button>
+<!-- 							<button type="submit" class="btn btn-danger" onClick="Modif()">Enregistrer -->
+<!-- 								les modifications</button> -->
+<!-- 						</div> -->
+						
+						<div class="form-group">
+						<div class="col-xs-12">
+							<a onclick="Modif()" class="btn btn-danger">Enregistrer 
+ 								les modifications</a>
 						</div>
+					</div>
 					</div>
 				</div>
 			</form>

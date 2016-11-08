@@ -65,13 +65,13 @@ public class NoSQLService {
 //		user.setMdp("mdp");
 //		User res = no.createAccount(user);
 //		System.out.println(res.getId());
-		
+//		
 //		User b = no.connectionCheck("jm2@gmail.com", "mdp");
-//		System.out.println(b);
-//		User user = new User("Julien3", "Margarido3", "jm3@gmail.com", "0606060608", null);
-//		User res = no.createAccount(user);
-//		no.changeInfos(user);
-		System.out.println("Fin tests");
+//		System.out.println(b.getId());
+		User user = new User("Julien3", "Margarido3", "jm3@gmail.com", "0606060608", null);
+		User res = no.createAccount(user);
+		no.changeInfos(user);
+//		System.out.println("Fin tests");
 		//TODO vos méthodes à tester ici (en mode débug, c'est cool)
 	}
 

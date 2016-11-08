@@ -4,13 +4,11 @@ function Skill(skill,level){
 	this.level = level;
 }
 
-Skill.prototype.getLevelLabel = function(){
-	if(this.level==1)
-		return 'Base';
-	if(this.level==2);
-	return 'Avancé';
-	if(this.level == 3)
-		return 'Expert';
+Skill.prototype.getLevelLabel = function()
+{
+	if(this.level==1) 	return 'Base';
+	if(this.level==2) 	return 'Avancé';
+	if(this.level == 3) return 'Expert';
 }
 
 Skill.prototype.getHTML = function (){
@@ -28,15 +26,19 @@ Skill.prototype.toJson = function(){
 	};
 }
 
+//var userSkills = [];
 
+var userSkills = initUserSkills();
 
-var userSkills = [];
-
-function initUserSkills(){
-	userSkills = [new Skill('C',1), new Skill('CSHARP', 2)];
-	for(i=0; i<userSkills.length; i++){
+function initUserSkills()
+{
+	userSkills = [new Skill('C',1), new Skill('C_SHARP', 2)];
+	for(i=0; i<userSkills.length; i++)
+	{
 		$('#skillList').append(userSkills[i].getHTML());
 	}
+
+	return userSkills;
 }
 
 function deleteSkill(id){
@@ -65,16 +67,18 @@ function addSkill(){
 	$('#skillList').append(newSkill.getHTML());	
 }
 
-userSkills = initUserSkills();
+//userSkills = initUserSkills();
 
-function Modif(){
+function Modif()
+{
 
-	alert (userSkills);
 
 	var success = function(){
 		//window.location.replace("main.jsp");
-		alet ("success");
+		alert ("success");
 	}
+	
+
 
 	var error = function(){
 		alert('error');
@@ -84,16 +88,18 @@ function Modif(){
 			lastname : document.getElementById('lastname').value,
 			firstname : document.getElementById('firstname').value,
 			email : document.getElementById('email').value,
-			tel : document.getElementById('tel').value,
 			password : document.getElementById('password').value,
-			skills : userSkills	
+			skills : JSON.stringify(userSkills)	
 	}
-
+	
 	$.ajax({
-		url : 'update',
-		type : 'POST',
-		data : data,
-		success : success,
-		error: error
-	});
+	       url : 'update',
+	       type : 'POST',
+		   dataType : 'json',
+	       data : data,
+	       success : success,
+	       error: error
+	    });
+
+
 }
